@@ -1,44 +1,22 @@
-/* =============================================
-   МАРЛИС AI — PREMIUM DESIGN SYSTEM v3.0
-   ============================================= */
-
 @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap');
 
 :root {
-    /* Color Palette */
     --bg-base: #030305;
-    /* Obsidian deep black */
     --bg-card: rgba(15, 15, 18, 0.4);
-    /* Darker sleeker cards */
     --bg-card-hover: rgba(25, 25, 30, 0.6);
     --border-subtle: rgba(251, 191, 36, 0.08);
-    /* Subtle gold tint on cards */
     --border-light: rgba(251, 191, 36, 0.15);
-    /* Stronger gold border */
-
-    /* Brand Colors - Billionaire Theme */
     --accent-blue: #FBBF24;
-    /* Replacing blue with bright Gold */
     --accent-violet: #D97706;
-    /* Deep amber/gold */
     --accent-indigo: #F59E0B;
-    /* Mid gold */
     --accent-rose: #B45309;
-    /* Deep bronze/copper */
     --accent-cyan: #FDE68A;
-    /* Soft champagne gold */
     --accent-gold: #F59E0B;
-
-    /* Text */
     --text-primary: rgba(255, 255, 255, 0.95);
     --text-secondary: rgba(255, 255, 255, 0.5);
     --text-muted: rgba(255, 255, 255, 0.28);
-
-    /* Glass */
     --glass-blur: 60px;
     --glass-sat: 180%;
-
-    /* Spacing */
     --safe-top: env(safe-area-inset-top, 0px);
     --safe-bottom: env(safe-area-inset-bottom, 0px);
     --radius-xl: 28px;
@@ -46,13 +24,9 @@
     --radius-md: 14px;
     --radius-sm: 10px;
     --radius-full: 999px;
-
-    /* Shadows */
     --shadow-lg: 0 24px 72px rgba(0, 0, 0, 0.5);
     --shadow-md: 0 8px 32px rgba(0, 0, 0, 0.35);
     --shadow-sm: 0 4px 16px rgba(0, 0, 0, 0.2);
-
-    /* Transitions */
     --ease-spring: cubic-bezier(0.22, 1, 0.36, 1);
     --ease-smooth: cubic-bezier(0.4, 0, 0.2, 1);
     --duration-fast: 0.18s;
@@ -60,7 +34,6 @@
     --duration-slow: 0.6s;
 }
 
-/* ---- LIGHT MODE ---- */
 body.light-mode {
     --bg-base: #F0F2F8;
     --bg-card: rgba(255, 255, 255, 0.6);
@@ -72,7 +45,6 @@ body.light-mode {
     --text-muted: rgba(0, 0, 0, 0.28);
 }
 
-/* ---- BASE ---- */
 *,
 *::before,
 *::after {
@@ -98,10 +70,6 @@ body {
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
 }
-
-/* =============================================
-   AMBIENT BACKGROUND
-   ============================================= */
 
 .ambient-bg {
     position: fixed;
@@ -179,10 +147,6 @@ body.light-mode .orb {
     }
 }
 
-/* =============================================
-   APP SHELL
-   ============================================= */
-
 .app-shell {
     position: relative;
     z-index: 1;
@@ -193,10 +157,6 @@ body.light-mode .orb {
     margin: 0 auto;
     padding: calc(var(--safe-top) + 10px) 20px calc(var(--safe-bottom) + 16px);
 }
-
-/* =============================================
-   TOP BAR
-   ============================================= */
 
 .topbar {
     display: flex;
@@ -243,24 +203,18 @@ body.light-mode .orb {
     gap: 8px;
 }
 
-/* =============================================
-   iOS 26 LIQUID GLASS BUTTONS
-   ============================================= */
-
 .icon-btn {
     position: relative;
     width: 42px;
     height: 42px;
     border-radius: 14px;
-    /* Multi-layer glass: translucent base + inner tint */
-    background:
+        background:
         linear-gradient(145deg,
             rgba(251, 191, 36, 0.08) 0%,
             rgba(251, 191, 36, 0.02) 60%,
             rgba(251, 191, 36, 0.05) 100%);
     border: 1px solid rgba(251, 191, 36, 0.18);
-    /* Spec: outer ring shadow + inner highlight line */
-    box-shadow:
+        box-shadow:
         0 1px 0 rgba(251, 191, 36, 0.22) inset,
         0 -1px 0 rgba(0, 0, 0, 0.22) inset,
         0 4px 16px rgba(0, 0, 0, 0.4),
@@ -276,7 +230,6 @@ body.light-mode .orb {
     overflow: hidden;
 }
 
-/* Specular sheen overlay */
 .icon-btn::before {
     content: '';
     position: absolute;
@@ -338,7 +291,6 @@ body.light-mode .icon-btn:hover {
         0 8px 24px rgba(0, 0, 0, 0.12);
 }
 
-/* Gold premium btn */
 .premium-icon {
     color: rgba(255, 190, 30, 0.9);
     background:
@@ -368,10 +320,6 @@ body.light-mode .icon-btn:hover {
         0 8px 28px rgba(255, 150, 0, 0.3);
 }
 
-/* =============================================
-   INTERACTION ZONE
-   ============================================= */
-
 .interaction-zone {
     flex: 1;
     display: flex;
@@ -382,8 +330,6 @@ body.light-mode .icon-btn:hover {
     padding: 20px 0;
     overflow: hidden;
 }
-
-/* ---- VOICE ORB ---- */
 
 .voice-orb-wrapper {
     position: relative;
@@ -500,8 +446,6 @@ canvas {
     opacity: 0.9;
 }
 
-/* ---- MESSAGE AREA ---- */
-
 .message-area {
     width: 100%;
     display: flex;
@@ -545,10 +489,6 @@ canvas {
     opacity: 1;
 }
 
-/* =============================================
-   BOTTOM DOCK
-   ============================================= */
-
 .bottom-dock {
     flex-shrink: 0;
     padding-top: 12px;
@@ -576,8 +516,7 @@ canvas {
     border-radius: 50%;
     border: 1px solid rgba(251, 191, 36, 0.35);
     cursor: pointer;
-    /* iOS 26 glass base */
-    background: linear-gradient(160deg,
+        background: linear-gradient(160deg,
             rgba(251, 191, 36, 0.05) 0%,
             rgba(30, 30, 35, 0.88) 60%,
             rgba(251, 191, 36, 0.02) 100%);
@@ -594,7 +533,6 @@ canvas {
     overflow: visible;
 }
 
-/* Specular sheen on record button */
 .record-button::before {
     content: '';
     position: absolute;
@@ -689,10 +627,6 @@ canvas {
 .hidden {
     display: none !important;
 }
-
-/* =============================================
-   HISTORY PANEL
-   ============================================= */
 
 .history-backdrop {
     position: fixed;
@@ -800,10 +734,6 @@ body.light-mode .history-panel {
     line-height: 1.5;
 }
 
-/* =============================================
-   PREMIUM MODAL
-   ============================================= */
-
 .modal-overlay {
     position: fixed;
     inset: 0;
@@ -903,7 +833,6 @@ body.light-mode .modal-card {
     color: var(--text-secondary);
 }
 
-/* Plan toggle */
 .plan-toggle {
     margin-bottom: 20px;
 }
@@ -939,7 +868,6 @@ body.light-mode .plan-pill.active {
     color: white;
 }
 
-/* Plan Contents */
 .plan-content {
     display: none;
     flex-direction: column;
@@ -1070,10 +998,6 @@ body.light-mode .plan-pill.active {
     margin-top: 16px;
 }
 
-/* =============================================
-   MOBILE OVERRIDES & RESPONSIVENESS
-   ============================================= */
-
 @media (max-width: 480px) {
     :root {
         --safe-top: env(safe-area-inset-top, 24px);
@@ -1127,8 +1051,7 @@ body.light-mode .plan-pill.active {
 
     .record-button:hover {
         transform: scale(1.04);
-        /* Less aggressive scale on mobile tap */
-    }
+            }
 
     .history-panel {
         width: 100vw;
@@ -1177,10 +1100,6 @@ body.light-mode .plan-pill.active {
     }
 }
 
-/* =============================================
-   MICRO-ANIMATIONS & UTILITY
-   ============================================= */
-
 @keyframes fade-in-up {
     from {
         opacity: 0;
@@ -1207,7 +1126,6 @@ body.light-mode .plan-pill.active {
     animation: fade-in-up 0.5s var(--ease-spring) forwards;
 }
 
-/* Scrollbar global */
 ::-webkit-scrollbar {
     width: 5px;
 }
