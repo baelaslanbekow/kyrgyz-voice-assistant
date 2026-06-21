@@ -1,0 +1,12 @@
+services:
+  - type: web
+    name: marlis-voice-assistant
+    runtime: docker
+    dockerfilePath: ./Dockerfile
+    plan: free
+    region: frankfurt
+    branch: main
+    healthCheckPath: /
+    envVars:
+      - key: GROQ_API_KEY
+        sync: false

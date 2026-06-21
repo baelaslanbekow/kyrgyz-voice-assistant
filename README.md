@@ -2,6 +2,8 @@
 
 Голосовой AI-ассистент на кыргызском языке. Пользователь говорит в микрофон — приложение распознаёт речь, отвечает через LLM и сохраняет контекст диалога.
 
+[![Live Demo](https://img.shields.io/badge/Demo-Render-22C55E)](https://marlis-voice-assistant.onrender.com)
+[![Deploy to Render](https://render.com/images/deploy-to-render-button.svg)](https://render.com/deploy?repo=https://github.com/baelaslanbekow/kyrgyz-voice-assistant)
 ![Python](https://img.shields.io/badge/Python-3.11-3776AB?logo=python&logoColor=white)
 ![FastAPI](https://img.shields.io/badge/FastAPI-009688?logo=fastapi&logoColor=white)
 ![Groq](https://img.shields.io/badge/Groq-Whisper%20%2B%20Llama-f37021)
@@ -12,13 +14,15 @@
   <img src="frontend/logo.png" alt="Марлис" width="120">
 </p>
 
+**Live:** [marlis-voice-assistant.onrender.com](https://marlis-voice-assistant.onrender.com) · **Профиль:** [github.com/baelaslanbekow](https://github.com/baelaslanbekow)
+
 ## О проекте
 
-**Марлис** — full-stack pet-проект: веб-приложение с голосовым вводом для кыргызского языка. Сделан как рабочий MVP с продуманным UI, лимитами использования и историей диалогов.
+**Марлис** — full-stack pet-проект: веб-приложение с голосовым вводом для кыргызского языка.
 
-**Задача:** дать пользователю возможность общаться с AI на кыргызском голосом, без клавиатуры.
+**Задача:** общение с AI на кыргызском голосом, без клавиатуры.
 
-**Решение:** Whisper (STT) + Llama 3.3 (чат) через Groq API, свой backend на FastAPI и PWA-фронтенд.
+**Решение:** Whisper (STT) + Llama 3.3 (чат) через Groq API, FastAPI backend, PWA frontend.
 
 ## Возможности
 
@@ -28,8 +32,9 @@
 - История диалогов в SQLite
 - Дневной лимит запросов (70/день)
 - Тёмная / светлая тема
-- PWA + Service Worker для офлайн-кэша статики
+- PWA + Service Worker
 - Адаптивный UI (mobile-first)
+- Docker + деплой на Render
 
 ## Стек
 
@@ -38,7 +43,7 @@
 | Backend | FastAPI, SQLAlchemy 2, Groq SDK, SQLite |
 | Frontend | Vanilla JS, Canvas API, GSAP, CSS |
 | AI | Groq Whisper Large V3, Llama 3.3 70B |
-| Инфра | Uvicorn, PWA |
+| Инфра | Docker, Render, Uvicorn |
 
 ## Архитектура
 
@@ -53,40 +58,35 @@ flowchart LR
     A -->|GET| G[/history]
 ```
 
-## Быстрый старт
+## Деплой на Render (1 клик)
 
-### 1. Клонировать репозиторий
+1. Нажми кнопку **Deploy to Render** выше
+2. Подключи GitHub-аккаунт
+3. Добавь переменную `GROQ_API_KEY` в Environment
+4. Нажми **Apply** — сервис поднимется автоматически
+
+Или вручную:
 
 ```bash
 git clone https://github.com/baelaslanbekow/kyrgyz-voice-assistant.git
 cd kyrgyz-voice-assistant
+docker build -t marlis .
+docker run -p 8000:8000 -e GROQ_API_KEY=your_key marlis
 ```
 
-### 2. Настроить окружение
+## Локальный запуск
 
 ```bash
-cd backend
+git clone https://github.com/baelaslanbekow/kyrgyz-voice-assistant.git
+cd kyrgyz-voice-assistant/backend
 python3 -m venv venv
-source venv/bin/activate        # Windows: venv\Scripts\activate
+source venv/bin/activate
 pip install -r requirements.txt
-cp .env.example .env
-```
-
-В `.env` указать ключ Groq:
-
-```env
-GROQ_API_KEY=your_key_here
-```
-
-Ключ: [console.groq.com](https://console.groq.com)
-
-### 3. Запустить
-
-```bash
+cp .env.example .env   # добавь GROQ_API_KEY
 uvicorn main:app --reload --host 0.0.0.0 --port 8000
 ```
 
-Открыть: [http://localhost:8000](http://localhost:8000)
+Ключ Groq: [console.groq.com](https://console.groq.com)
 
 ## API
 
@@ -96,46 +96,35 @@ uvicorn main:app --reload --host 0.0.0.0 --port 8000
 | `POST` | `/chat?query=...` | Запрос к AI с контекстом |
 | `GET` | `/history` | Последние 10 диалогов |
 | `POST` | `/clear_history` | Очистить историю |
-| `POST` | `/synthesize?text=...` | TTS stub (заглушка) |
+| `POST` | `/synthesize?text=...` | TTS stub |
 
-## Структура проекта
+## Структура
 
 ```
 kyrgyz-voice-assistant/
-├── backend/
-│   ├── main.py              # FastAPI, роуты, Groq
-│   ├── database.py          # SQLAlchemy модели
-│   ├── requirements.txt
-│   └── kanitts/             # Kani TTS (интеграция TTS)
-├── frontend/
-│   ├── index.html
-│   ├── app.js               # запись, визуализация, API
-│   ├── style.css
-│   ├── sw.js                # service worker
-│   └── manifest.json
+├── backend/          # FastAPI + SQLite
+├── frontend/         # PWA UI
+├── Dockerfile
+├── render.yaml       # Render Blueprint
 └── README.md
 ```
 
-## Что показывает проект (для портфолио)
+## Для резюме
 
-- Full-stack разработка: API + UI в одном репозитории
-- Работа с внешними AI API (STT + LLM)
-- Хранение состояния и контекста диалога в БД
-- Ограничение rate limit на уровне backend
-- PWA и нативный UX в браузере (запись, анимации, адаптив)
-- Чистая структура без лишних зависимостей на фронте
+```
+Марлис — Kyrgyz Voice Assistant
+Голосовой AI на кыргызском (Whisper + Llama 3.3, FastAPI, PWA, Docker)
+https://github.com/baelaslanbekow/kyrgyz-voice-assistant
+https://marlis-voice-assistant.onrender.com
+```
 
 ## Roadmap
 
-- [ ] Интеграция Kani TTS для озвучки ответов
+- [ ] Kani TTS для озвучки ответов
 - [ ] Авторизация пользователей
-- [ ] Деплой (Railway / Render / VPS)
-- [ ] Docker
+- [x] Docker
+- [x] Деплой на Render
 
 ## Автор
 
-**Bael Aslanbekow** — [GitHub](https://github.com/baelaslanbekow)
-
----
-
-*Pet-проект. Открыт для code review и предложений.*
+**Bael Aslanbekow** — [GitHub Profile](https://github.com/baelaslanbekow)
