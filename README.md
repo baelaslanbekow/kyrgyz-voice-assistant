@@ -123,7 +123,7 @@ https://marlis-voice-assistant.onrender.com
 - [ ] Kani TTS для озвучки ответов
 - [ ] Авторизация пользователей
 - [x] Docker
-- [x] Деплой на Render
+- [x] Деплой на Render — [live](https://marlis-voice-assistant.onrender.com)
 
 ## Автор
 
